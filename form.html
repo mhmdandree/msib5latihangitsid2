@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body">
+    <div class="container">
+        <h2 style="text-align: center;">Nilai mata kuliah</h2>
+        <form id="gradeForm">
+            <label style="font-family: Verdana, Geneva, Tahoma, sans-serif;" for="name">Nama:</label>
+            <input class="name" type="text" id="name">
+            <br>
+
+            <label style="font-family: Verdana, Geneva, Tahoma, sans-serif;" for="course">Mata Kuliah:</label>
+            <input type="text" id="course">
+            <br>
+
+            <label style="font-family: Verdana, Geneva, Tahoma, sans-serif;" for="grade">Grade:</label>
+            <select id="grade">
+                <option value="">Pilih Grade</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+            </select>
+
+            <button type="button" onclick="calculateAverage()">Hitung</button>
+
+        </form>
+        <p id="result"></p>
+
+
+        <div class="result-container">
+            <h3 style="text-align: center;">Hasil Inputan</h3>
+            <table id="resultTable" border="2">
+                <tr>
+                    <th>Nama</th>
+                    <th>Mata Kuliah</th>
+                    <th>Grade</th>
+                    <th>Nilai Rata-rata</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#gradeForm").submit(function (event) {
+                var arrayList = null;
+
+                if (arrayList == undefined) {
+                    console.log("UNDIFINED");
+                } else {
+                    console.log("Ini variable arrayList[7] : ", arrayList[7]);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function calculateAverage() {
+            const gradeValues = {
+                A: 4,
+                B: 3,
+                C: 2,
+                D: 1,
+                E: 0
+            };
+            const name = document.getElementById("name").value;
+            const course = document.getElementById("course").value;
+            const selectedGrade = document.getElementById("grade").value;
+
+            if (selectedGrade in gradeValues) {
+                const gradeValue = gradeValues[selectedGrade];
+                const resultTable = document.getElementById("resultTable");
+
+                const totalGradeValues =
+                    gradeValue;
+                const average = totalGradeValues / 1;
+
+                const newRow = resultTable.insertRow(-1);
+
+                const cellName = newRow.insertCell(0);
+                cellName.textContent = name;
+
+                const cellCourse = newRow.insertCell(1);
+                cellCourse.textContent = course;
+
+                const cellGrade = newRow.insertCell(2);
+                cellGrade.textContent = selectedGrade;
+
+                const cellAverage = newRow.insertCell(3);
+                cellAverage.textContent = average.toFixed(2);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
